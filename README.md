@@ -8,6 +8,7 @@
 1. `git clone 本项目地址` 到本地, 用Intellij Idea打开
 2. 打开项目根目录下的pom.xml依次下载项目依赖即可完成构建
 3. 修改application.yml中的数据库及其他配置
+4. 前端项目见[smartuniversity-web][4]
 
 ### 3. 项目截图
 ![Swagger-API文档-1](screenshots/Swagger-API文档-1.png)
@@ -32,3 +33,4 @@
 [1]: https://spring.io/projects/spring-boot/
 [2]: https://swagger.io/
 [3]: https://blog.mybatis.org/
+[4]: https://github.com/RITCHIEHuang/smartUniversity-web
