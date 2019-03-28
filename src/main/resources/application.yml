@@ -1,0 +1,85 @@
+# server 端口
+server:
+  port: 8080
+# 数据库连接相关配置
+spring:
+  datasource:
+    druid:
+      url: jdbc:mysql://localhost:3306/smartUniversitySystem?characterEncoding=utf8
+      driver-class-name: com.mysql.jdbc.Driver
+      username: root
+      password: 445412
+      initial-size: 5
+      max-active: 30
+      min-idle: 5
+      max-wait: 60000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 1 FROM DUAL
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 50
+      filters: stat,wall
+      connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+      use-global-data-source-stat: true
+  aop:
+    auto: true
+  mail:
+    host: smtp.qq.com
+    username: 1169532212@qq.com
+    password: bqoogqxksotrigjh
+    default-encoding: UTF-8
+
+
+mail:
+  fromMail:
+    addr: 1169532212@qq.com
+
+
+# mybatis
+mybatis:
+  type-aliases-package: com.njtech.smartuniversity.bean
+  config-location: classpath:mybatis-config.xml
+  mapper-locations: classpath:mapper/*.xml
+
+# mapper
+mapper:
+    mappers:
+        - com.njtech.smartuniversity.dao
+    not-empty: false
+    identity: MYSQL
+
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql
+
+jwt:
+  secret: ritchie
+  expiration: 604800
+  header: Authorization
+  tokenHead: Bearer
+
+qiniu:
+  accessKey: Sj7dGiSQ4RDu-m51FFMjAShrwBIMF9eijflZn1g5
+  secretKey: njCzv1fNM9q_O-c59caIS853LX4t_JxWRRCjuKoz
+  bucket: ritchie
+  path: ohkd1whwt.bkt.clouddn.com
+
+tomcatserver:
+  maxfilesize: 300MB
+  maxrequestsize: 500MB
+# mail
+
+#logging:
+#  config: classpath:logback-spring.groovy
+
+#sms:
+#  send-url: https://api.netease.im/sms/sendcode.action
+#  verify-url:
+#  AppKey:
+
+

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC
+        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+
+    <classPathEntry
+            location="/Users/ritchie/.m2/repository/mysql/mysql-connector-java/5.1.46/mysql-connector-java-5.1.46.jar"/>
+
+    <context id="context" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+            <property name="suppressDate" value="true"/>
+        </commentGenerator>
+
+        <jdbcConnection userId="root" password="445412" driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/smartUniversitySystem?useUnicode=true&amp;characterEncoding=utf8"/>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="com.njtech.smartuniversity.bean" targetProject="src/main/java">
+            <property name="enableSubPackages" value="false"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources">
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+
+        <javaClientGenerator targetPackage="com.njtech.smartuniversity.dao" type="XMLMAPPER"
+                             targetProject="src/main/java">
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+
+        <table schema="" tableName="user" domainObjectName="UserBean"/>
+
+        <table schema="" tableName="card" domainObjectName="CardBean"/>
+
+        <table schema="" tableName="goods" domainObjectName="GoodsBean"/>
+
+        <table schema="" tableName="orders" domainObjectName="OrderBean"/>
+
+        <table schema="" tableName="shop_info" domainObjectName="ShopInfoBean"/>
+
+        <table schema="" tableName="authority" domainObjectName="AuthorityBean"/>
+
+        <table tableName="email_info" domainObjectName="EmailInfoBean"/>
+
+    </context>
+</generatorConfiguration>

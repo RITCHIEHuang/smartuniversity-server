@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.njtech.smartuniversity.dao.GoodsBeanMapper">
+  <resultMap id="BaseResultMap" type="com.njtech.smartuniversity.bean.GoodsBean">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="g_name" jdbcType="VARCHAR" property="gName" />
+    <result column="g_price" jdbcType="VARCHAR" property="gPrice" />
+    <result column="g_quantity" jdbcType="INTEGER" property="gQuantity" />
+    <result column="g_ly" jdbcType="VARCHAR" property="gLy" />
+    <result column="g_vid" jdbcType="VARCHAR" property="gVid" />
+    <result column="g_img" jdbcType="VARCHAR" property="gImg" />
+    <result column="g_simg" jdbcType="VARCHAR" property="gSimg" />
+    <result column="g_label" jdbcType="VARCHAR" property="gLabel" />
+    <result column="g_details" jdbcType="VARCHAR" property="gDetails" />
+    <result column="g_state" jdbcType="CHAR" property="gState" />
+    <result column="s_i_uuid" jdbcType="VARCHAR" property="sIUuid" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, g_name, g_price, g_quantity, g_ly, g_vid, g_img, g_simg, g_label, g_details, 
+    g_state, s_i_uuid
+  </sql>
+  <select id="selectByExample" parameterType="com.njtech.smartuniversity.bean.GoodsBeanExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from goods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from goods
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from goods
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.njtech.smartuniversity.bean.GoodsBeanExample">
+    delete from goods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.njtech.smartuniversity.bean.GoodsBean">
+    insert into goods (id, g_name, g_price, 
+      g_quantity, g_ly, g_vid, 
+      g_img, g_simg, g_label, 
+      g_details, g_state, s_i_uuid
+      )
+    values (#{id,jdbcType=INTEGER}, #{gName,jdbcType=VARCHAR}, #{gPrice,jdbcType=VARCHAR}, 
+      #{gQuantity,jdbcType=INTEGER}, #{gLy,jdbcType=VARCHAR}, #{gVid,jdbcType=VARCHAR}, 
+      #{gImg,jdbcType=VARCHAR}, #{gSimg,jdbcType=VARCHAR}, #{gLabel,jdbcType=VARCHAR}, 
+      #{gDetails,jdbcType=VARCHAR}, #{gState,jdbcType=CHAR}, #{sIUuid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.njtech.smartuniversity.bean.GoodsBean">
+    insert into goods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="gName != null">
+        g_name,
+      </if>
+      <if test="gPrice != null">
+        g_price,
+      </if>
+      <if test="gQuantity != null">
+        g_quantity,
+      </if>
+      <if test="gLy != null">
+        g_ly,
+      </if>
+      <if test="gVid != null">
+        g_vid,
+      </if>
+      <if test="gImg != null">
+        g_img,
+      </if>
+      <if test="gSimg != null">
+        g_simg,
+      </if>
+      <if test="gLabel != null">
+        g_label,
+      </if>
+      <if test="gDetails != null">
+        g_details,
+      </if>
+      <if test="gState != null">
+        g_state,
+      </if>
+      <if test="sIUuid != null">
+        s_i_uuid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="gName != null">
+        #{gName,jdbcType=VARCHAR},
+      </if>
+      <if test="gPrice != null">
+        #{gPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="gQuantity != null">
+        #{gQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="gLy != null">
+        #{gLy,jdbcType=VARCHAR},
+      </if>
+      <if test="gVid != null">
+        #{gVid,jdbcType=VARCHAR},
+      </if>
+      <if test="gImg != null">
+        #{gImg,jdbcType=VARCHAR},
+      </if>
+      <if test="gSimg != null">
+        #{gSimg,jdbcType=VARCHAR},
+      </if>
+      <if test="gLabel != null">
+        #{gLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="gDetails != null">
+        #{gDetails,jdbcType=VARCHAR},
+      </if>
+      <if test="gState != null">
+        #{gState,jdbcType=CHAR},
+      </if>
+      <if test="sIUuid != null">
+        #{sIUuid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.njtech.smartuniversity.bean.GoodsBeanExample" resultType="java.lang.Long">
+    select count(*) from goods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update goods
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.gName != null">
+        g_name = #{record.gName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gPrice != null">
+        g_price = #{record.gPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gQuantity != null">
+        g_quantity = #{record.gQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="record.gLy != null">
+        g_ly = #{record.gLy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gVid != null">
+        g_vid = #{record.gVid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gImg != null">
+        g_img = #{record.gImg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gSimg != null">
+        g_simg = #{record.gSimg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gLabel != null">
+        g_label = #{record.gLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gDetails != null">
+        g_details = #{record.gDetails,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gState != null">
+        g_state = #{record.gState,jdbcType=CHAR},
+      </if>
+      <if test="record.sIUuid != null">
+        s_i_uuid = #{record.sIUuid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update goods
+    set id = #{record.id,jdbcType=INTEGER},
+      g_name = #{record.gName,jdbcType=VARCHAR},
+      g_price = #{record.gPrice,jdbcType=VARCHAR},
+      g_quantity = #{record.gQuantity,jdbcType=INTEGER},
+      g_ly = #{record.gLy,jdbcType=VARCHAR},
+      g_vid = #{record.gVid,jdbcType=VARCHAR},
+      g_img = #{record.gImg,jdbcType=VARCHAR},
+      g_simg = #{record.gSimg,jdbcType=VARCHAR},
+      g_label = #{record.gLabel,jdbcType=VARCHAR},
+      g_details = #{record.gDetails,jdbcType=VARCHAR},
+      g_state = #{record.gState,jdbcType=CHAR},
+      s_i_uuid = #{record.sIUuid,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.njtech.smartuniversity.bean.GoodsBean">
+    update goods
+    <set>
+      <if test="gName != null">
+        g_name = #{gName,jdbcType=VARCHAR},
+      </if>
+      <if test="gPrice != null">
+        g_price = #{gPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="gQuantity != null">
+        g_quantity = #{gQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="gLy != null">
+        g_ly = #{gLy,jdbcType=VARCHAR},
+      </if>
+      <if test="gVid != null">
+        g_vid = #{gVid,jdbcType=VARCHAR},
+      </if>
+      <if test="gImg != null">
+        g_img = #{gImg,jdbcType=VARCHAR},
+      </if>
+      <if test="gSimg != null">
+        g_simg = #{gSimg,jdbcType=VARCHAR},
+      </if>
+      <if test="gLabel != null">
+        g_label = #{gLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="gDetails != null">
+        g_details = #{gDetails,jdbcType=VARCHAR},
+      </if>
+      <if test="gState != null">
+        g_state = #{gState,jdbcType=CHAR},
+      </if>
+      <if test="sIUuid != null">
+        s_i_uuid = #{sIUuid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.njtech.smartuniversity.bean.GoodsBean">
+    update goods
+    set g_name = #{gName,jdbcType=VARCHAR},
+      g_price = #{gPrice,jdbcType=VARCHAR},
+      g_quantity = #{gQuantity,jdbcType=INTEGER},
+      g_ly = #{gLy,jdbcType=VARCHAR},
+      g_vid = #{gVid,jdbcType=VARCHAR},
+      g_img = #{gImg,jdbcType=VARCHAR},
+      g_simg = #{gSimg,jdbcType=VARCHAR},
+      g_label = #{gLabel,jdbcType=VARCHAR},
+      g_details = #{gDetails,jdbcType=VARCHAR},
+      g_state = #{gState,jdbcType=CHAR},
+      s_i_uuid = #{sIUuid,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
